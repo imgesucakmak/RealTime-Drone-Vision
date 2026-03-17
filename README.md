@@ -20,7 +20,7 @@ Bu proje, bilgisayarlı görü ve derin öğrenme algoritmaları kullanılarak g
 
 Projeyi kendi bilgisayarınızda sıfırdan çalıştırmak için terminalinizde sırasıyla aşağıdaki adımları izleyin:
 
-**Projeyi bilgisayarınıza indirin :**
+**Projeyi bilgisayarınıza indirin:**
 ```bash
 git clone [https://github.com/imgesucakmak/RealTime-Drone-Vision.git](https://github.com/imgesucakmak/RealTime-Drone-Vision.git)
 cd RealTime-Drone-Vision
@@ -28,12 +28,3 @@ python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
 python main.py
-```
-
-🎮 Kullanım
-
-Kod çalıştığında açılan ilk OpenCV penceresinde, farenizin sol tıkı ile izlemek istediğiniz alanı 4 köşe seçerek çizin.
-Çizimi tamamladıktan sonra klavyeden ENTER tuşuna basın.
-Arka planda sunucu çalışmaya başlayacaktır. Tarayıcınızı açın ve canlı paneli izlemek için şu adrese gidin:
-👉 http://127.0.0.1:5000
-Geliştirici: İmge Su - Bilgisayar Mühendisliği Öğrencisi
