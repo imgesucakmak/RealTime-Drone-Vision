@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Kişisel Radar Merkezi</title>
+        <style>
+            body { background-color: #0b0f19; color: #00ffcc; font-family: 'Courier New', monospace; margin: 0; padding: 20px; }
+            h1 { text-align: center; letter-spacing: 2px; text-shadow: 0 0 10px #00ffcc; margin-bottom: 40px; }
+            .container { display: flex; justify-content: center; gap: 30px; align-items: flex-start; }
+            .video-panel { border: 2px solid #00ffcc; border-radius: 8px; box-shadow: 0 0 20px rgba(0, 255, 204, 0.4); padding: 5px; background: #000; }
+            .dashboard { width: 350px; border: 2px solid #ff3366; border-radius: 8px; padding: 20px; box-shadow: 0 0 20px rgba(255, 51, 102, 0.3); background: rgba(255, 51, 102, 0.05); }
+            .stat-box { font-size: 24px; font-weight: bold; color: #ff3366; border-bottom: 1px solid #ff3366; padding-bottom: 10px; margin-bottom: 20px; }
+            .target-list { list-style: none; padding: 0; margin: 0; }
+            .target-item { background: rgba(0, 255, 204, 0.1); border-left: 4px solid #00ffcc; margin-bottom: 10px; padding: 10px; display: flex; justify-content: space-between; font-size: 16px; }
+        </style>
+    </head>
+    <body>
+        <h1>/// OTONOM KOMUTA MERKEZİ ///</h1>
+        
+        <div class="container">
+            <div class="video-panel">
+                <img src="/video_feed" width="850">
+            </div>
+            
+            <div class="dashboard">
+                <div class="stat-box">
+                    TOPLAM İHLAL: <span id="toplam-ihlal">0</span>
+                </div>
+                <h3>KİLİTLENİLEN HEDEFLER</h3>
+                <ul class="target-list" id="hedef-listesi">
+                    </ul>
+            </div>
+        </div>
+
+        <script>
+            setInterval(function() {
+                fetch('/veri_cek')
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('toplam-ihlal').innerText = data.toplam_ihlal;
+                        
+                        const liste = document.getElementById('hedef-listesi');
+                        liste.innerHTML = '';
+                        
+                        data.tehditler.forEach(hedef => {
+                            const li = document.createElement('li');
+                            li.className = 'target-item';
+                            li.innerHTML = `<span>[${hedef.sinif}] ID: ${hedef.id}</span> <span>${hedef.hiz} km/h</span>`;
+                            liste.appendChild(li);
+                        });
+                    });
+            }, 1000); 
+        </script>
+    </body>
+</html>
